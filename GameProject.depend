@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1400892663 source:/home/konrad/workspace/GameProject/main.cpp
+	"Application.h"
+
+1400891609 /home/konrad/workspace/GameProject/include/Application.h
+	<SDL2/SDL.h>
+	"AppState.h"
+	<vector>
+
+1400891645 source:/home/konrad/workspace/GameProject/src/Application.cpp
+	"Application.h"
+	"ASTest.h"
+
+1400857768 source:/home/konrad/workspace/GameProject/src/AppState.cpp
+	"AppState.h"
+
+1400889687 /home/konrad/workspace/GameProject/include/AppState.h
+	<SDL2/SDL.h>
+
+1400890931 /home/konrad/workspace/GameProject/include/ASTest.h
+	"AppState.h"
+	"Application.h"
+
+1401033509 source:/home/konrad/workspace/GameProject/src/ASTest.cpp
+	"ASTest.h"
+	<iostream>
+
