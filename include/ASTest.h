@@ -20,7 +20,7 @@ class ASTest : public AppState
     protected:
     private:
         bool running;
-        int last;
+        int frame;
 };
 
 #endif // ASTEST_H

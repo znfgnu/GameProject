@@ -2,8 +2,11 @@
 #define APPLICATION_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_assert.h>
+#include <SDL2/SDL_version.h>
 #include "AppState.h"
 #include <vector>
+#include <algorithm>
 
 class Application
 {
@@ -31,6 +34,7 @@ class Application
 
         SDL_Window* window;
         SDL_Renderer* renderer;
+        unsigned dtmin;
 };
 
 #endif // APPLICATION_H

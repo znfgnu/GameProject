@@ -6,7 +6,8 @@ ASTest::ASTest()
 {
     // ctor
     running = true;
-    last = SDL_GetTicks();
+    frame=0;
+//    last = 0;
 }
 
 ASTest::~ASTest()
@@ -23,10 +24,12 @@ void ASTest::onEvent(SDL_Event *event)
 // ?
 void ASTest::onLoop()
 {
-    int now = SDL_GetTicks();
-    double fps = 1000.0 / (now - last);
-    SDL_Log("FPS: %lf\n", fps);
-    last = now;
+    frame++;
+//    int now = SDL_GetTicks();
+//    double fps = 1000.0 / (now - last);
+//    if(last) SDL_Log("FPS: %lf\n", fps);
+    //SDL_assert(fps<30);
+//    last = now;
 }
 
 void ASTest::onRender(SDL_Window* window, SDL_Renderer* renderer)
@@ -35,10 +38,11 @@ void ASTest::onRender(SDL_Window* window, SDL_Renderer* renderer)
     SDL_RenderClear(renderer);
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
-    for(int i=0; i<600; i++)
+    /*for(int i=0; i<600; i++)
     {
-        for(int j=i%2; j<800; j+=2) SDL_RenderDrawPoint(renderer, j, i);
-    }
+        for(int j=i%10; j<800; j+=20) SDL_RenderDrawPoint(renderer, j, i);
+    }*/
+    SDL_RenderDrawLine(renderer,0,0,frame%800,600);
 
     // Finally
     SDL_RenderPresent(renderer);
