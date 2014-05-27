@@ -38,14 +38,16 @@ int Application::run(int argc, char** argv)
         AppState* state = statestack.back();
 
         int sizebefore = statestack.size();
-        while(SDL_PollEvent(&event)) state->onEvent(&event);    // parse events
+        while(SDL_PollEvent(&event)) state->onEvent(&event);    // parse events, new state can happen
         int sizeafter = statestack.size();
 
-        if (sizeafter != sizebefore)    // if new state happened or existing removed
+        if (state->finished())
         {
-            while (!todestroy.empty()) { delete todestroy.back(); todestroy.pop_back(); }
+            popState();
             continue;
         }
+
+        if (sizeafter != sizebefore) continue;    // if new state happened
 
         state->onLoop();
         state->onRender(window, renderer);
@@ -67,7 +69,7 @@ void Application::pushState(AppState* state)
 void Application::popState()
 {
     AppState* state = statestack.back();
-    todestroy.push_back(state); // destructing state instance in main loop
+    delete state;
     statestack.pop_back();
     if (!statestack.empty()) statestack.back()->onWakeUp();
 }

@@ -27,7 +27,7 @@ class Application
         bool init(int, char**);  // initiates SDL
 
         std::vector<AppState*> statestack;
-        std::vector<AppState*> todestroy;
+        //std::vector<AppState*> todestroy;
 
         SDL_Window* window;
         SDL_Renderer* renderer;

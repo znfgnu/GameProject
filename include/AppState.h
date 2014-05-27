@@ -14,7 +14,7 @@ class AppState
         AppState() {};
         virtual ~AppState() {};
 
-        virtual bool onInit() {};   // initializes state - returns if everything is alright
+        virtual bool onInit() {return 1;};   // initializes state - returns if everything is alright
 
         // loop methods
         virtual void onEvent(SDL_Event*) {};    // handles events
@@ -23,6 +23,8 @@ class AppState
 
         virtual void onFreeze() {}; // when next state happens
         virtual void onWakeUp() {}; // when next state finishes, we go back
+
+        virtual bool finished() {return 1;}
 
     protected:
     private:

@@ -15,9 +15,11 @@ class ASTest : public AppState
 
         void onFreeze();
         void onWakeUp();
+        bool finished();
 
     protected:
     private:
+        bool running;
         int last;
 };
 

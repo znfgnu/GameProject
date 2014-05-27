@@ -5,6 +5,7 @@
 ASTest::ASTest()
 {
     // ctor
+    running = true;
     last = SDL_GetTicks();
 }
 
@@ -15,7 +16,7 @@ ASTest::~ASTest()
 
 void ASTest::onEvent(SDL_Event *event)
 {
-    if (event->type == SDL_QUIT) Application::getInstance()->popState();
+    if (event->type == SDL_QUIT) running = false;
     if (event->type == SDL_KEYDOWN && event->key.keysym.sym == 'd') Application::getInstance()->pushState(new ASTest());
 }
 
@@ -24,7 +25,7 @@ void ASTest::onLoop()
 {
     int now = SDL_GetTicks();
     double fps = 1000.0 / (now - last);
-    std::cout << "FPS: " << fps << std::endl;
+    SDL_Log("FPS: %lf\n", fps);
     last = now;
 }
 
@@ -39,9 +40,13 @@ void ASTest::onRender(SDL_Window* window, SDL_Renderer* renderer)
         for(int j=i%2; j<800; j+=2) SDL_RenderDrawPoint(renderer, j, i);
     }
 
-
     // Finally
     SDL_RenderPresent(renderer);
+}
+
+bool ASTest::finished()
+{
+    return !running;
 }
 
 void ASTest::onFreeze()
